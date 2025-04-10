@@ -24,7 +24,7 @@ public class FirstTest {
     }
 
     @Test
-    public void testLogginIntoApplication() throws InterruptedException {
+    public void testLoginIntoApplication() throws InterruptedException {
         Thread.sleep(2000);
       var username = driver.findElement(By.name("username"));
       username.sendKeys("Admin");
