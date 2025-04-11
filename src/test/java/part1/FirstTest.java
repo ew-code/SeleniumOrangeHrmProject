@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -26,7 +27,7 @@ public class FirstTest {
 
     @AfterClass
     public void tearDown() {
-        driver.quit();
+//        driver.quit();
     }
 
     @Test
@@ -37,6 +38,12 @@ public class FirstTest {
       var password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
       password.sendKeys("admin123");
 
-      driver.findElement(By.tagName("button")).click();
+      var loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.tagName("button")));
+      loginButton.click();
+        var dashboardHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h6")));
+        String actualResult = dashboardHeader.getText();
+        String expectedResult = "Dashboard";
+
+        Assert.assertEquals(actualResult, expectedResult);
     }
 }
